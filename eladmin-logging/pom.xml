@@ -15,7 +15,7 @@
         <dependency>
             <groupId>me.zhengjie</groupId>
             <artifactId>eladmin-common</artifactId>
-            <version>2.1</version>
+            <version>${project.parent.version}</version>
         </dependency>
     </dependencies>
 </project>

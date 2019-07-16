@@ -4,9 +4,13 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ObjectUtil;
 import lombok.extern.slf4j.Slf4j;
 import me.zhengjie.annotation.Query;
+
 import javax.persistence.criteria.*;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Zheng Jie
@@ -17,7 +21,7 @@ public class QueryHelp {
 
     /**
      * @描述 :  转换为Predicate
-     * @作者 :  Dong ZhaoYang
+     * @作者 :  Dong Zhao Yang
      * @日期 :  2017/8/7
      * @时间 :  17:25
      */
@@ -25,7 +29,7 @@ public class QueryHelp {
     public static <R, Q> Predicate getPredicate(Root<R> root, Q query, CriteriaBuilder cb) {
         List<Predicate> list = new ArrayList<>();
 
-        if(query == null){
+        if (query == null) {
             return cb.and(list.toArray(new Predicate[list.size()]));
         }
         try {
@@ -56,35 +60,35 @@ public class QueryHelp {
                     }
                     switch (q.type()) {
                         case EQUAL:
-                            list.add(cb.equal(getExpression(attributeName,join,root)
-                                    .as((Class<? extends Comparable>) fieldType),val));
+                            list.add(cb.equal(getExpression(attributeName, join, root)
+                                    .as((Class<? extends Comparable>) fieldType), val));
                             break;
                         case GREATER_THAN:
-                            list.add(cb.greaterThanOrEqualTo(getExpression(attributeName,join,root)
+                            list.add(cb.greaterThanOrEqualTo(getExpression(attributeName, join, root)
                                     .as((Class<? extends Comparable>) fieldType), (Comparable) val));
                             break;
                         case LESS_THAN:
-                            list.add(cb.lessThanOrEqualTo(getExpression(attributeName,join,root)
+                            list.add(cb.lessThanOrEqualTo(getExpression(attributeName, join, root)
                                     .as((Class<? extends Comparable>) fieldType), (Comparable) val));
                             break;
                         case LESS_THAN_NQ:
-                            list.add(cb.lessThan(getExpression(attributeName,join,root)
+                            list.add(cb.lessThan(getExpression(attributeName, join, root)
                                     .as((Class<? extends Comparable>) fieldType), (Comparable) val));
                             break;
                         case INNER_LIKE:
-                            list.add(cb.like(getExpression(attributeName,join,root)
+                            list.add(cb.like(getExpression(attributeName, join, root)
                                     .as(String.class), "%" + val.toString() + "%"));
                             break;
                         case LEFT_LIKE:
-                            list.add(cb.like(getExpression(attributeName,join,root)
+                            list.add(cb.like(getExpression(attributeName, join, root)
                                     .as(String.class), "%" + val.toString()));
                             break;
                         case RIGHT_LIKE:
-                            list.add(cb.like(getExpression(attributeName,join,root)
+                            list.add(cb.like(getExpression(attributeName, join, root)
                                     .as(String.class), val.toString() + "%"));
                         case IN:
-                            if (CollUtil.isNotEmpty((Collection<Long>)val)) {
-                                list.add(getExpression(attributeName,join,root).in((Collection<Long>) val));
+                            if (CollUtil.isNotEmpty((Collection<Long>) val)) {
+                                list.add(getExpression(attributeName, join, root).in((Collection<Long>) val));
                             }
                             break;
                     }

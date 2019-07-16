@@ -4,8 +4,8 @@ spring:
     druid:
       type: com.alibaba.druid.pool.DruidDataSource
       driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-      url: jdbc:log4jdbc:mysql://localhost:3306/eladmin?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
-      username: root
+      url: jdbc:log4jdbc:mysql://192.168.0.2:3306/dev?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useSSL=false
+      username: dev
       password: 123456
 
       # 初始化配置

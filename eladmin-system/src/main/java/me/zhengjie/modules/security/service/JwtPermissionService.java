@@ -1,5 +1,6 @@
 package me.zhengjie.modules.security.service;
 
+import lombok.extern.slf4j.Slf4j;
 import me.zhengjie.modules.system.domain.Role;
 import me.zhengjie.modules.system.repository.RoleRepository;
 import me.zhengjie.modules.system.service.dto.UserDTO;
@@ -9,21 +10,30 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
+
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * @author d7
+ */
+@Slf4j
 @Service
 @CacheConfig(cacheNames = "role")
 public class JwtPermissionService {
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+
+    public JwtPermissionService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
 
     /**
      * key的名称如有修改，请同步修改 UserServiceImpl 中的 update 方法
-     * @param user
-     * @return
+     *
+     * @param user 用户
+     * @return 结果
      */
     @Cacheable(key = "'loadPermissionByUser:' + #p0.username")
     public Collection<GrantedAuthority> mapToGrantedAuthorities(UserDTO user) {

@@ -19,7 +19,7 @@
         <dependency>
             <groupId>me.zhengjie</groupId>
             <artifactId>eladmin-generator</artifactId>
-            <version>2.1</version>
+            <version>${project.parent.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>me.zhengjie</groupId>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>me.zhengjie</groupId>
             <artifactId>eladmin-tools</artifactId>
-            <version>2.1</version>
+            <version>${project.parent.version}</version>
         </dependency>
 
         <!--jwt-->
