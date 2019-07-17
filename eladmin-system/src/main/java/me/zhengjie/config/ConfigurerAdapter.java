@@ -1,19 +1,10 @@
 package me.zhengjie.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import java.math.BigInteger;
-import java.nio.charset.Charset;
-import java.util.List;
 
 /**
  * WebMvcConfigurer
@@ -31,7 +22,7 @@ public class ConfigurerAdapter implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .allowedHeaders("*")
                 .allowedOrigins("*")
-                .allowedMethods("GET","POST","PUT","DELETE");
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
 
     }
 

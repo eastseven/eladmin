@@ -2,7 +2,6 @@ package me.zhengjie.modules.system.service.mapper;
 
 import me.zhengjie.mapper.EntityMapper;
 import me.zhengjie.modules.system.domain.Role;
-import me.zhengjie.modules.system.service.dto.RoleDTO;
 import me.zhengjie.modules.system.service.dto.RoleSmallDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

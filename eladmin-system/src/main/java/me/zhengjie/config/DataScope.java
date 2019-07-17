@@ -4,12 +4,12 @@ import me.zhengjie.modules.system.domain.Dept;
 import me.zhengjie.modules.system.service.DeptService;
 import me.zhengjie.modules.system.service.RoleService;
 import me.zhengjie.modules.system.service.UserService;
-import me.zhengjie.modules.system.service.dto.DeptDTO;
 import me.zhengjie.modules.system.service.dto.RoleSmallDTO;
 import me.zhengjie.modules.system.service.dto.UserDTO;
 import me.zhengjie.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,13 +17,14 @@ import java.util.Set;
 
 /**
  * 数据权限配置
+ *
  * @author Zheng Jie
  * @date 2019-4-1
  */
 @Component
 public class DataScope {
 
-    private final String[] scopeType = {"全部","本级","自定义"};
+    private final String[] scopeType = {"全部", "本级", "自定义"};
 
     @Autowired
     private UserService userService;
@@ -47,7 +48,7 @@ public class DataScope {
         for (RoleSmallDTO role : roleSet) {
 
             if (scopeType[0].equals(role.getDataScope())) {
-                return new HashSet<>() ;
+                return new HashSet<>();
             }
 
             // 存储本级的数据权限
@@ -74,9 +75,9 @@ public class DataScope {
     public List<Long> getDeptChildren(List<Dept> deptList) {
         List<Long> list = new ArrayList<>();
         deptList.forEach(dept -> {
-                    if (dept!=null && dept.getEnabled()){
+                    if (dept != null && dept.getEnabled()) {
                         List<Dept> depts = deptService.findByPid(dept.getId());
-                        if(deptList!=null && deptList.size()!=0){
+                        if (deptList != null && deptList.size() != 0) {
                             list.addAll(getDeptChildren(depts));
                         }
                         list.add(dept.getId());
