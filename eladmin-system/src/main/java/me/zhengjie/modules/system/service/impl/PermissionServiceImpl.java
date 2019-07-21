@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.*;
 
 /**
@@ -32,21 +33,21 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public List<PermissionDTO> queryAll(CommonQueryCriteria criteria) {
-        return permissionMapper.toDto(permissionRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+        return permissionMapper.toDto(permissionRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder)));
     }
 
     @Override
     public PermissionDTO findById(long id) {
         Optional<Permission> permission = permissionRepository.findById(id);
-        ValidationUtil.isNull(permission,"Permission","id",id);
+        ValidationUtil.isNull(permission, "Permission", "id", id);
         return permissionMapper.toDto(permission.get());
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public PermissionDTO create(Permission resources) {
-        if(permissionRepository.findByName(resources.getName()) != null){
-            throw new EntityExistException(Permission.class,"name",resources.getName());
+        if (permissionRepository.findByName(resources.getName()) != null) {
+            throw new EntityExistException(Permission.class, "name", resources.getName());
         }
         return permissionMapper.toDto(permissionRepository.save(resources));
     }
@@ -55,17 +56,17 @@ public class PermissionServiceImpl implements PermissionService {
     @Transactional(rollbackFor = Exception.class)
     public void update(Permission resources) {
         Optional<Permission> optionalPermission = permissionRepository.findById(resources.getId());
-        if(resources.getId().equals(resources.getPid())) {
+        if (resources.getId().equals(resources.getPid())) {
             throw new BadRequestException("上级不能为自己");
         }
-        ValidationUtil.isNull(optionalPermission,"Permission","id",resources.getId());
+        ValidationUtil.isNull(optionalPermission, "Permission", "id", resources.getId());
 
         Permission permission = optionalPermission.get();
 
         Permission permission1 = permissionRepository.findByName(resources.getName());
 
-        if(permission1 != null && !permission1.getId().equals(permission.getId())){
-            throw new EntityExistException(Permission.class,"name",resources.getName());
+        if (permission1 != null && !permission1.getId().equals(permission.getId())) {
+            throw new EntityExistException(Permission.class, "name", resources.getName());
         }
 
         permission.setName(resources.getName());
@@ -86,15 +87,15 @@ public class PermissionServiceImpl implements PermissionService {
 
     @Override
     public Object getPermissionTree(List<Permission> permissions) {
-        List<Map<String,Object>> list = new LinkedList<>();
+        List<Map<String, Object>> list = new LinkedList<>();
         permissions.forEach(permission -> {
-                    if (permission!=null){
+                    if (permission != null) {
                         List<Permission> permissionList = permissionRepository.findByPid(permission.getId());
-                        Map<String,Object> map = new HashMap<>();
-                        map.put("id",permission.getId());
-                        map.put("label",permission.getAlias());
-                        if(permissionList!=null && permissionList.size()!=0){
-                            map.put("children",getPermissionTree(permissionList));
+                        Map<String, Object> map = new HashMap<>();
+                        map.put("id", permission.getId());
+                        map.put("label", permission.getAlias());
+                        if (permissionList != null && permissionList.size() != 0) {
+                            map.put("children", getPermissionTree(permissionList));
                         }
                         list.add(map);
                     }
@@ -129,11 +130,11 @@ public class PermissionServiceImpl implements PermissionService {
             }
         }
 
-        Integer totalElements = permissionDTOS!=null?permissionDTOS.size():0;
+        Integer totalElements = permissionDTOS != null ? permissionDTOS.size() : 0;
 
         Map map = new HashMap();
-        map.put("content",trees.size() == 0?permissionDTOS:trees);
-        map.put("totalElements",totalElements);
+        map.put("content", trees.size() == 0 ? permissionDTOS : trees);
+        map.put("totalElements", totalElements);
         return map;
     }
 }
