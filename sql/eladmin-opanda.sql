@@ -34,7 +34,7 @@ CREATE TABLE `alipay_config`
     `sys_service_provider_id` varchar(255) DEFAULT NULL COMMENT '商户号',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -50,7 +50,7 @@ CREATE TABLE `dept`
     `enabled`     bit(1)       NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 13
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -90,7 +90,7 @@ CREATE TABLE `dict`
     `remark` varchar(255) DEFAULT NULL COMMENT '描述',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 6
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -118,7 +118,7 @@ CREATE TABLE `dict_detail`
     KEY `FK5tpkputc6d9nboxojdbgnpmyb` (`dict_id`),
     CONSTRAINT `FK5tpkputc6d9nboxojdbgnpmyb` FOREIGN KEY (`dict_id`) REFERENCES `dict` (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 15
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -151,7 +151,7 @@ CREATE TABLE `email_config`
     `user`      varchar(255) DEFAULT NULL COMMENT '发件者用户名',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -170,7 +170,7 @@ CREATE TABLE `gen_config`
     `prefix`      varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -197,7 +197,7 @@ CREATE TABLE `job`
     KEY `FKmvhj0rogastlctflsxf1d6k3i` (`dept_id`),
     CONSTRAINT `FKmvhj0rogastlctflsxf1d6k3i` FOREIGN KEY (`dept_id`) REFERENCES `dept` (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 20
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -224,7 +224,7 @@ CREATE TABLE `log`
     `username`         varchar(255) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 10334
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -248,77 +248,76 @@ CREATE TABLE `menu`
     `path`        varchar(255) DEFAULT NULL COMMENT '链接地址',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 41
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
 -- Records of menu
 -- ----------------------------
-INSERT INTO `menu`
-VALUES ('1', '2018-12-18 15:11:29', '\0', '系统管理', null, '0', '1', 'system', 'system');
-INSERT INTO `menu`
-VALUES ('2', '2018-12-18 15:14:44', '\0', '用户管理', 'system/user/index', '1', '2', 'peoples', 'user');
-INSERT INTO `menu`
-VALUES ('3', '2018-12-18 15:16:07', '\0', '角色管理', 'system/role/index', '1', '3', 'role', 'role');
-INSERT INTO `menu`
-VALUES ('4', '2018-12-18 15:16:45', '\0', '权限管理', 'system/permission/index', '1', '4', 'permission', 'permission');
-INSERT INTO `menu`
-VALUES ('5', '2018-12-18 15:17:28', '\0', '菜单管理', 'system/menu/index', '1', '5', 'menu', 'menu');
-INSERT INTO `menu`
-VALUES ('6', '2018-12-18 15:17:48', '\0', '系统监控', null, '0', '10', 'monitor', 'monitor');
-INSERT INTO `menu`
-VALUES ('7', '2018-12-18 15:18:26', '\0', '操作日志', 'monitor/log/index', '6', '11', 'log', 'logs');
-INSERT INTO `menu`
-VALUES ('8', '2018-12-18 15:19:01', '\0', '系统缓存', 'monitor/redis/index', '6', '13', 'redis', 'redis');
-INSERT INTO `menu`
-VALUES ('9', '2018-12-18 15:19:34', '\0', 'SQL监控', 'monitor/sql/index', '6', '14', 'sqlMonitor', 'druid');
-INSERT INTO `menu`
-VALUES ('10', '2018-12-19 13:38:16', '\0', '组件管理', null, '0', '50', 'zujian', 'components');
-INSERT INTO `menu`
-VALUES ('11', '2018-12-19 13:38:49', '\0', '图标库', 'components/IconSelect', '10', '51', 'icon', 'icon');
-INSERT INTO `menu`
-VALUES ('14', '2018-12-27 10:13:09', '\0', '邮件工具', 'tools/email/index', '36', '24', 'email', 'email');
-INSERT INTO `menu`
-VALUES ('15', '2018-12-27 11:58:25', '\0', '富文本', 'components/Editor', '10', '52', 'fwb', 'tinymce');
-INSERT INTO `menu`
-VALUES ('16', '2018-12-28 09:36:53', '\0', '图床管理', 'tools/picture/index', '36', '25', 'image', 'pictures');
-INSERT INTO `menu`
-VALUES ('17', '2018-12-28 15:09:49', '', '项目地址', '', '0', '0', 'github', 'https://github.com/elunez/eladmin');
-INSERT INTO `menu`
-VALUES ('18', '2018-12-31 11:12:15', '\0', '七牛云存储', 'tools/qiniu/index', '36', '26', 'qiniu', 'qiniu');
-INSERT INTO `menu`
-VALUES ('19', '2018-12-31 14:52:38', '\0', '支付宝工具', 'tools/aliPay/index', '36', '27', 'alipay', 'aliPay');
-INSERT INTO `menu`
-VALUES ('21', '2019-01-04 16:22:03', '\0', '多级菜单', '', '0', '900', 'menu', 'nested');
-INSERT INTO `menu`
-VALUES ('22', '2019-01-04 16:23:29', '\0', '二级菜单1', 'nested/menu1/index', '21', '999', 'menu', 'menu1');
-INSERT INTO `menu`
-VALUES ('23', '2019-01-04 16:23:57', '\0', '二级菜单2', 'nested/menu2/index', '21', '999', 'menu', 'menu2');
-INSERT INTO `menu`
-VALUES ('24', '2019-01-04 16:24:48', '\0', '三级菜单1', 'nested/menu1/menu1-1', '22', '999', 'menu', 'menu1-1');
-INSERT INTO `menu`
-VALUES ('27', '2019-01-07 17:27:32', '\0', '三级菜单2', 'nested/menu1/menu1-2', '22', '999', 'menu', 'menu1-2');
-INSERT INTO `menu`
-VALUES ('28', '2019-01-07 20:34:40', '\0', '定时任务', 'system/timing/index', '36', '21', 'timing', 'timing');
-INSERT INTO `menu`
-VALUES ('30', '2019-01-11 15:45:55', '\0', '代码生成', 'generator/index', '36', '22', 'dev', 'generator');
-INSERT INTO `menu`
-VALUES ('32', '2019-01-13 13:49:03', '\0', '异常日志', 'monitor/log/errorLog', '6', '12', 'error', 'errorLog');
-INSERT INTO `menu`
-VALUES ('33', '2019-03-08 13:46:44', '\0', 'Markdown', 'components/MarkDown', '10', '53', 'markdown', 'markdown');
-INSERT INTO `menu`
-VALUES ('34', '2019-03-08 15:49:40', '\0', 'Yaml编辑器', 'components/YamlEdit', '10', '54', 'dev', 'yaml');
-INSERT INTO `menu`
-VALUES ('35', '2019-03-25 09:46:00', '\0', '部门管理', 'system/dept/index', '1', '6', 'dept', 'dept');
-INSERT INTO `menu`
-VALUES ('36', '2019-03-29 10:57:35', '\0', '系统工具', '', '0', '20', 'sys-tools', 'sys-tools');
-INSERT INTO `menu`
-VALUES ('37', '2019-03-29 13:51:18', '\0', '岗位管理', 'system/job/index', '1', '7', 'Steve-Jobs', 'job');
-INSERT INTO `menu`
-VALUES ('38', '2019-03-29 19:57:53', '\0', '接口文档', 'tools/swagger/index', '36', '23', 'swagger', 'swagger2');
-INSERT INTO `menu`
-VALUES ('39', '2019-04-10 11:49:04', '\0', '字典管理', 'system/dict/index', '1', '8', 'dictionary', 'dict');
+# INSERT INTO `menu`VALUES ('1', '2018-12-18 15:11:29', '\0',  'el:系统管理', null, '0', '1', 'system', 'system');
+# INSERT INTO `menu`VALUES ('2', '2018-12-18 15:14:44', '\0',  'el:用户管理', 'system/user/index', '1', '2', 'peoples', 'user');
+# INSERT INTO `menu`VALUES ('3', '2018-12-18 15:16:07', '\0',  'el:角色管理', 'system/role/index', '1', '3', 'role', 'role');
+# INSERT INTO `menu`VALUES ('4', '2018-12-18 15:16:45', '\0',  'el:权限管理', 'system/permission/index', '1', '4', 'permission', 'permission');
+# INSERT INTO `menu`VALUES ('5', '2018-12-18 15:17:28', '\0',  'el:菜单管理', 'system/menu/index', '1', '5', 'menu', 'menu');
+# INSERT INTO `menu`VALUES ('6', '2018-12-18 15:17:48', '\0',  'el:系统监控', null, '0', '10', 'monitor', 'monitor');
+# INSERT INTO `menu`VALUES ('7', '2018-12-18 15:18:26', '\0',  'el:操作日志', 'monitor/log/index', '6', '11', 'log', 'logs');
+# INSERT INTO `menu`VALUES ('8', '2018-12-18 15:19:01', '\0',  'el:系统缓存', 'monitor/redis/index', '6', '13', 'redis', 'redis');
+# INSERT INTO `menu`VALUES ('9', '2018-12-18 15:19:34', '\0',  'el:SQL监控', 'monitor/sql/index', '6', '14', 'sqlMonitor', 'druid');
+# INSERT INTO `menu`VALUES ('10', '2018-12-19 13:38:16', '\0', 'el:组件管理', null, '0', '50', 'zujian', 'components');
+# INSERT INTO `menu`VALUES ('11', '2018-12-19 13:38:49', '\0', 'el:图标库', 'components/IconSelect', '10', '51', 'icon', 'icon');
+# INSERT INTO `menu`VALUES ('14', '2018-12-27 10:13:09', '\0', 'el:邮件工具', 'tools/email/index', '36', '24', 'email', 'email');
+# INSERT INTO `menu`VALUES ('15', '2018-12-27 11:58:25', '\0', 'el:富文本', 'components/Editor', '10', '52', 'fwb', 'tinymce');
+# INSERT INTO `menu`VALUES ('16', '2018-12-28 09:36:53', '\0', 'el:图床管理', 'tools/picture/index', '36', '25', 'image', 'pictures');
+# INSERT INTO `menu`VALUES ('17', '2018-12-28 15:09:49', '',   'el:项目地址', '', '0', '0', 'github', 'https://github.com/elunez/eladmin');
+# INSERT INTO `menu`VALUES ('18', '2018-12-31 11:12:15', '\0', 'el:七牛云存储', 'tools/qiniu/index', '36', '26', 'qiniu', 'qiniu');
+# INSERT INTO `menu`VALUES ('19', '2018-12-31 14:52:38', '\0', 'el:支付宝工具', 'tools/aliPay/index', '36', '27', 'alipay', 'aliPay');
+# INSERT INTO `menu`VALUES ('21', '2019-01-04 16:22:03', '\0', 'el:多级菜单', '', '0', '900', 'menu', 'nested');
+# INSERT INTO `menu`VALUES ('22', '2019-01-04 16:23:29', '\0', 'el:二级菜单1', 'nested/menu1/index', '21', '999', 'menu', 'menu1');
+# INSERT INTO `menu`VALUES ('23', '2019-01-04 16:23:57', '\0', 'el:二级菜单2', 'nested/menu2/index', '21', '999', 'menu', 'menu2');
+# INSERT INTO `menu`VALUES ('24', '2019-01-04 16:24:48', '\0', 'el:三级菜单1', 'nested/menu1/menu1-1', '22', '999', 'menu', 'menu1-1');
+# INSERT INTO `menu`VALUES ('27', '2019-01-07 17:27:32', '\0', 'el:三级菜单2', 'nested/menu1/menu1-2', '22', '999', 'menu', 'menu1-2');
+# INSERT INTO `menu`VALUES ('28', '2019-01-07 20:34:40', '\0', 'el:定时任务', 'system/timing/index', '36', '21', 'timing', 'timing');
+# INSERT INTO `menu`VALUES ('30', '2019-01-11 15:45:55', '\0', 'el:代码生成', 'generator/index', '36', '22', 'dev', 'generator');
+# INSERT INTO `menu`VALUES ('32', '2019-01-13 13:49:03', '\0', 'el:异常日志', 'monitor/log/errorLog', '6', '12', 'error', 'errorLog');
+# INSERT INTO `menu`VALUES ('33', '2019-03-08 13:46:44', '\0', 'el:Markdown', 'components/MarkDown', '10', '53', 'markdown', 'markdown');
+# INSERT INTO `menu`VALUES ('34', '2019-03-08 15:49:40', '\0', 'el:Yaml编辑器', 'components/YamlEdit', '10', '54', 'dev', 'yaml');
+# INSERT INTO `menu`VALUES ('35', '2019-03-25 09:46:00', '\0', 'el:部门管理', 'system/dept/index', '1', '6', 'dept', 'dept');
+# INSERT INTO `menu`VALUES ('36', '2019-03-29 10:57:35', '\0', 'el:系统工具', '', '0', '20', 'sys-tools', 'sys-tools');
+# INSERT INTO `menu`VALUES ('37', '2019-03-29 13:51:18', '\0', 'el:岗位管理', 'system/job/index', '1', '7', 'Steve-Jobs', 'job');
+# INSERT INTO `menu`VALUES ('38', '2019-03-29 19:57:53', '\0', 'el:接口文档', 'tools/swagger/index', '36', '23', 'swagger', 'swagger2');
+# INSERT INTO `menu`VALUES ('39', '2019-04-10 11:49:04', '\0', 'el:字典管理', 'system/dict/index', '1', '8', 'dictionary', 'dict');
 
+-- OPanda Menu Data --
+INSERT INTO `menu`VALUES ('100', current_time, '\0', '系统设置', null, '0', '1', 'system', 'system');
+INSERT INTO `menu`VALUES ('101', current_time, '\0', '用户管理', 'system/user', '100', '2', 'peoples', 'user');
+INSERT INTO `menu`VALUES ('103', current_time, '\0', '角色管理', 'system/role', '100', '3', 'role', 'role');
+INSERT INTO `menu`VALUES ('104', current_time, '\0', '部门管理', 'system/dept', '100', '6', 'dept', 'dept');
+INSERT INTO `menu`VALUES ('105', current_time, '\0', '岗位管理', 'system/job', '100', '7', 'Steve-Jobs', 'job');
+INSERT INTO `menu`VALUES ('106', current_time, '\0', '权限管理', 'system/permission', '100', '4', 'permission', 'permission');
+INSERT INTO `menu`VALUES ('107', current_time, '\0', '菜单管理', 'system/menu', '100', '5', 'menu', 'menu');
+INSERT INTO `menu`VALUES ('108', current_time, '\0', '数据字段管理', 'system/table', '100', '10', 'monitor', 'monitor');
+INSERT INTO `menu`VALUES ('109', current_time, '\0', '修改密码', 'system/password', '100', '10', 'monitor', 'monitor');
+INSERT INTO `menu`VALUES ('110', current_time, '\0', '操作日志', 'system/log', '100', '11', 'log', 'logs');
+INSERT INTO `menu`VALUES ('111', current_time, '\0', '系统缓存', 'system/redis', '100', '13', 'redis', 'redis');
+
+INSERT INTO `menu`VALUES ('200', current_time, '\0', '新闻动态', null, '0', '1', 'system', 'news');
+INSERT INTO `menu`VALUES ('201', current_time, '\0', '发布新闻', 'news/pub', '200', '2', 'system', 'news');
+INSERT INTO `menu`VALUES ('202', current_time, '\0', '新闻分类', 'news/category', '200', '3', 'system', 'news');
+INSERT INTO `menu`VALUES ('203', current_time, '\0', '新闻列表', 'news/list', '200', '4', 'system', 'news');
+
+INSERT INTO `menu`VALUES ('300', current_time, '\0', '公司章程', null, '0', '1', 'system', 'article');
+INSERT INTO `menu`VALUES ('301', current_time, '\0', '发布章程', 'article/pub', '300', '2', 'system', 'article');
+INSERT INTO `menu`VALUES ('302', current_time, '\0', '章程分类', 'article/category', '300', '3', 'system', 'article');
+INSERT INTO `menu`VALUES ('303', current_time, '\0', '章程列表', 'article/list', '300', '4', 'system', 'article');
+
+INSERT INTO `menu`VALUES ('400', current_time, '\0', 'Banner管理', null, '0', '1', 'system', 'banner');
+INSERT INTO `menu`VALUES ('401', current_time, '\0', '首页Banner', 'banner/index', '400', '2', 'system', 'banner');
+
+INSERT INTO `menu`VALUES ('500', current_time, '\0', '学生管理', null, '0', '1', 'system', 'student');
+INSERT INTO `menu`VALUES ('501', current_time, '\0', '学生列表', 'student/list', '500', '2', 'system', 'student');
+
+INSERT INTO `menu`VALUES ('600', current_time, '\0', '订单管理', null, '0', '1', 'system', 'order');
+INSERT INTO `menu`VALUES ('601', current_time, '\0', '订单查询', 'order/query', '600', '2', 'system', 'order');
 -- ----------------------------
 -- Table structure for permission
 -- ----------------------------
@@ -332,7 +331,7 @@ CREATE TABLE `permission`
     `pid`         int(11)    NOT NULL COMMENT '上级权限',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 55
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -452,7 +451,7 @@ CREATE TABLE `picture`
     `width`       varchar(255) DEFAULT NULL COMMENT '图片宽度',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -470,7 +469,7 @@ CREATE TABLE `qiniu_config`
     `zone`       varchar(255) DEFAULT NULL COMMENT '机房',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -488,7 +487,7 @@ CREATE TABLE `qiniu_content`
     `url`         varchar(255) DEFAULT NULL COMMENT '文件url',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 6
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -508,7 +507,7 @@ CREATE TABLE `quartz_job`
     `update_time`     datetime     DEFAULT NULL COMMENT '创建或更新日期',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 4
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -535,7 +534,7 @@ CREATE TABLE `quartz_log`
     `time`             bigint(20)   DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 3
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -556,7 +555,7 @@ CREATE TABLE `role`
     `level`       int(255)     DEFAULT NULL,
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 5
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -605,70 +604,70 @@ CREATE TABLE `roles_menus`
 -- ----------------------------
 -- Records of roles_menus
 -- ----------------------------
-INSERT INTO `roles_menus`
-VALUES ('1', '1');
-INSERT INTO `roles_menus`
-VALUES ('2', '1');
-INSERT INTO `roles_menus`
-VALUES ('3', '1');
-INSERT INTO `roles_menus`
-VALUES ('4', '1');
-INSERT INTO `roles_menus`
-VALUES ('5', '1');
-INSERT INTO `roles_menus`
-VALUES ('6', '1');
-INSERT INTO `roles_menus`
-VALUES ('7', '1');
-INSERT INTO `roles_menus`
-VALUES ('8', '1');
-INSERT INTO `roles_menus`
-VALUES ('9', '1');
-INSERT INTO `roles_menus`
-VALUES ('10', '1');
-INSERT INTO `roles_menus`
-VALUES ('11', '1');
-INSERT INTO `roles_menus`
-VALUES ('14', '1');
-INSERT INTO `roles_menus`
-VALUES ('15', '1');
-INSERT INTO `roles_menus`
-VALUES ('16', '1');
-INSERT INTO `roles_menus`
-VALUES ('17', '1');
-INSERT INTO `roles_menus`
-VALUES ('18', '1');
-INSERT INTO `roles_menus`
-VALUES ('19', '1');
-INSERT INTO `roles_menus`
-VALUES ('21', '1');
-INSERT INTO `roles_menus`
-VALUES ('22', '1');
-INSERT INTO `roles_menus`
-VALUES ('23', '1');
-INSERT INTO `roles_menus`
-VALUES ('24', '1');
-INSERT INTO `roles_menus`
-VALUES ('27', '1');
-INSERT INTO `roles_menus`
-VALUES ('28', '1');
-INSERT INTO `roles_menus`
-VALUES ('30', '1');
-INSERT INTO `roles_menus`
-VALUES ('32', '1');
-INSERT INTO `roles_menus`
-VALUES ('33', '1');
-INSERT INTO `roles_menus`
-VALUES ('34', '1');
-INSERT INTO `roles_menus`
-VALUES ('35', '1');
-INSERT INTO `roles_menus`
-VALUES ('36', '1');
-INSERT INTO `roles_menus`
-VALUES ('37', '1');
-INSERT INTO `roles_menus`
-VALUES ('38', '1');
-INSERT INTO `roles_menus`
-VALUES ('39', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('1', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('2', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('3', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('4', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('5', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('6', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('7', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('8', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('9', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('10', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('11', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('14', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('15', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('16', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('17', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('18', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('19', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('21', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('22', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('23', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('24', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('27', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('28', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('30', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('32', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('33', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('34', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('35', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('36', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('37', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('38', '1');
+# INSERT INTO `roles_menus`
+# VALUES ('39', '1');
 
 -- ----------------------------
 -- Table structure for roles_permissions
@@ -716,7 +715,7 @@ CREATE TABLE `user`
     CONSTRAINT `FK5rwmryny6jthaaxkogownknqp` FOREIGN KEY (`dept_id`) REFERENCES `dept` (`id`),
     CONSTRAINT `FKfftoc2abhot8f2wu6cl9a5iky` FOREIGN KEY (`job_id`) REFERENCES `job` (`id`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 6
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;
 
 -- ----------------------------
@@ -783,5 +782,5 @@ CREATE TABLE `visits`
     PRIMARY KEY (`id`),
     UNIQUE KEY `UK_11aksgq87euk9bcyeesfs4vtp` (`date`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 55
+  AUTO_INCREMENT = 10000
   DEFAULT CHARSET = utf8;

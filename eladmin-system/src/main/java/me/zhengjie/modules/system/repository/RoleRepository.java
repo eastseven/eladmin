@@ -17,12 +17,24 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
     /**
      * findByName
      *
-     * @param name
-     * @return
+     * @param name 名称
+     * @return 结果
      */
     Role findByName(String name);
 
+    /**
+     * findByUsers_Id
+     *
+     * @param id ID
+     * @return 结果
+     */
     Set<Role> findByUsers_Id(Long id);
 
+    /**
+     * findByMenus_Id
+     *
+     * @param id ID
+     * @return 结果
+     */
     Set<Role> findByMenus_Id(Long id);
 }
