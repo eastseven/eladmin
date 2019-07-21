@@ -9,20 +9,33 @@ import java.util.List;
 import java.util.Set;
 
 /**
-* @author Zheng Jie
-* @date 2019-03-25
-*/
+ * @author Zheng Jie
+ * @date 2019-03-25
+ */
 public interface DeptRepository extends JpaRepository<Dept, Long>, JpaSpecificationExecutor {
 
     /**
      * findByPid
-     * @param id
-     * @return
+     *
+     * @param id ID
+     * @return 结果
      */
     List<Dept> findByPid(Long id);
 
-    @Query(value = "select name from dept where id = ?1",nativeQuery = true)
+    /**
+     * 查询
+     *
+     * @param id ID
+     * @return 结果
+     */
+    @Query(value = "select name from dept where id = ?1", nativeQuery = true)
     String findNameById(Long id);
 
+    /**
+     * 查询
+     *
+     * @param id ID
+     * @return 结果
+     */
     Set<Dept> findByRoles_Id(Long id);
 }

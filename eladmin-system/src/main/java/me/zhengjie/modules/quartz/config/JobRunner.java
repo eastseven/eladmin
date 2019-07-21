@@ -25,11 +25,12 @@ public class JobRunner implements ApplicationRunner {
 
     /**
      * 项目启动时重新激活启用的定时任务
-     * @param applicationArguments
-     * @throws Exception
+     *
+     * @param applicationArguments 参数
+     * @throws Exception 异常
      */
     @Override
-    public void run(ApplicationArguments applicationArguments){
+    public void run(ApplicationArguments applicationArguments) {
         System.out.println("--------------------注入定时任务---------------------");
         List<QuartzJob> quartzJobs = quartzJobRepository.findByIsPauseIsFalse();
         quartzJobs.forEach(quartzJob -> {

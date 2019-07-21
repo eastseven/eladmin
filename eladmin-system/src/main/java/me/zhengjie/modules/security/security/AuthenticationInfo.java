@@ -2,6 +2,7 @@ package me.zhengjie.modules.security.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import java.io.Serializable;
 
 /**

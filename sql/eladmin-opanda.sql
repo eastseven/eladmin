@@ -300,24 +300,24 @@ INSERT INTO `menu`VALUES ('109', current_time, '\0', '修改密码', 'system/pas
 INSERT INTO `menu`VALUES ('110', current_time, '\0', '操作日志', 'system/log', '100', '11', 'log', 'logs');
 INSERT INTO `menu`VALUES ('111', current_time, '\0', '系统缓存', 'system/redis', '100', '13', 'redis', 'redis');
 
-INSERT INTO `menu`VALUES ('200', current_time, '\0', '新闻动态', null, '0', '1', 'system', 'news');
-INSERT INTO `menu`VALUES ('201', current_time, '\0', '发布新闻', 'news/pub', '200', '2', 'system', 'news');
+INSERT INTO `menu`VALUES ('200', current_time, '\0', '新闻动态', null, '0', '1', 'gonggao', 'news');
+INSERT INTO `menu`VALUES ('201', current_time, '\0', '发布新闻', 'news/pub', '200', '2', 'fwb', 'news');
 INSERT INTO `menu`VALUES ('202', current_time, '\0', '新闻分类', 'news/category', '200', '3', 'system', 'news');
-INSERT INTO `menu`VALUES ('203', current_time, '\0', '新闻列表', 'news/list', '200', '4', 'system', 'news');
+INSERT INTO `menu`VALUES ('203', current_time, '\0', '新闻列表', 'news/list', '200', '4', 'index', 'news');
 
-INSERT INTO `menu`VALUES ('300', current_time, '\0', '公司章程', null, '0', '1', 'system', 'article');
-INSERT INTO `menu`VALUES ('301', current_time, '\0', '发布章程', 'article/pub', '300', '2', 'system', 'article');
+INSERT INTO `menu`VALUES ('300', current_time, '\0', '公司章程', null, '0', '1', 'github', 'article');
+INSERT INTO `menu`VALUES ('301', current_time, '\0', '发布章程', 'article/pub', '300', '2', 'fwb', 'article');
 INSERT INTO `menu`VALUES ('302', current_time, '\0', '章程分类', 'article/category', '300', '3', 'system', 'article');
-INSERT INTO `menu`VALUES ('303', current_time, '\0', '章程列表', 'article/list', '300', '4', 'system', 'article');
+INSERT INTO `menu`VALUES ('303', current_time, '\0', '章程列表', 'article/list', '300', '4', 'index', 'article');
 
-INSERT INTO `menu`VALUES ('400', current_time, '\0', 'Banner管理', null, '0', '1', 'system', 'banner');
-INSERT INTO `menu`VALUES ('401', current_time, '\0', '首页Banner', 'banner/index', '400', '2', 'system', 'banner');
+INSERT INTO `menu`VALUES ('400', current_time, '\0', 'Banner管理', null, '0', '1', 'menu', 'banner');
+INSERT INTO `menu`VALUES ('401', current_time, '\0', '首页Banner', 'banner/index', '400', '2', 'image', 'banner');
 
-INSERT INTO `menu`VALUES ('500', current_time, '\0', '学生管理', null, '0', '1', 'system', 'student');
-INSERT INTO `menu`VALUES ('501', current_time, '\0', '学生列表', 'student/list', '500', '2', 'system', 'student');
+INSERT INTO `menu`VALUES ('500', current_time, '\0', '学生管理', null, '0', '1', 'peoples', 'student');
+INSERT INTO `menu`VALUES ('501', current_time, '\0', '学生列表', 'student/list', '500', '2', 'user1', 'student');
 
-INSERT INTO `menu`VALUES ('600', current_time, '\0', '订单管理', null, '0', '1', 'system', 'order');
-INSERT INTO `menu`VALUES ('601', current_time, '\0', '订单查询', 'order/query', '600', '2', 'system', 'order');
+INSERT INTO `menu`VALUES ('600', current_time, '\0', '订单管理', null, '0', '1', 'swagger', 'order');
+INSERT INTO `menu`VALUES ('601', current_time, '\0', '订单查询', 'order/query', '600', '2', 'log', 'order');
 -- ----------------------------
 -- Table structure for permission
 -- ----------------------------

@@ -17,20 +17,23 @@ public interface VisitsService {
 
     /**
      * 新增记录
-     * @param request
+     *
+     * @param request Request
      */
     @Async
     void count(HttpServletRequest request);
 
     /**
      * 获取数据
-     * @return
+     *
+     * @return 结果
      */
     Object get();
 
     /**
      * getChartData
-     * @return
+     *
+     * @return 结果
      */
     Object getChartData();
 }

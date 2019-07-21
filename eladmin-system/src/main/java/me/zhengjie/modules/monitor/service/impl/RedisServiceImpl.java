@@ -56,7 +56,7 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void flushdb() {
+    public void flushDb() {
         redisTemplate.getConnectionFactory().getConnection().flushDb();
     }
 

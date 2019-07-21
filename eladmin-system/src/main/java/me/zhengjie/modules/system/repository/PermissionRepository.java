@@ -17,15 +17,17 @@ public interface PermissionRepository extends JpaRepository<Permission, Long>, J
 
     /**
      * findByName
-     * @param name
-     * @return
+     *
+     * @param name Name
+     * @return 结果
      */
     Permission findByName(String name);
 
     /**
      * findByPid
-     * @param pid
-     * @return
+     *
+     * @param pid PID
+     * @return 结果
      */
     List<Permission> findByPid(long pid);
 }

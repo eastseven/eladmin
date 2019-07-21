@@ -3,13 +3,16 @@ package me.zhengjie.modules.security.service;
 import me.zhengjie.exception.BadRequestException;
 import me.zhengjie.modules.security.security.JwtUser;
 import me.zhengjie.modules.system.service.UserService;
-import me.zhengjie.modules.system.service.dto.*;
+import me.zhengjie.modules.system.service.dto.DeptSmallDTO;
+import me.zhengjie.modules.system.service.dto.JobSmallDTO;
+import me.zhengjie.modules.system.service.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Optional;
 
 /**
@@ -27,7 +30,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     private JwtPermissionService permissionService;
 
     @Override
-    public UserDetails loadUserByUsername(String username){
+    public UserDetails loadUserByUsername(String username) {
 
         UserDTO user = userService.findByName(username);
         if (user == null) {

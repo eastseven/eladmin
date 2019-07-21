@@ -18,17 +18,25 @@ public interface MenuRepository extends JpaRepository<Menu, Long>, JpaSpecificat
 
     /**
      * findByName
-     * @param name
-     * @return
+     *
+     * @param name Name
+     * @return 结果
      */
     Menu findByName(String name);
 
     /**
      * findByPid
-     * @param pid
-     * @return
+     *
+     * @param pid PID
+     * @return 结果
      */
     List<Menu> findByPid(long pid);
 
+    /**
+     * 查询
+     *
+     * @param id ID
+     * @return 结果
+     */
     LinkedHashSet<Menu> findByRoles_IdOrderBySortAsc(Long id);
 }

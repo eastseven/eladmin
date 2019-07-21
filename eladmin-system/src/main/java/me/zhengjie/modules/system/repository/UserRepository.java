@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,42 +20,47 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
 
     /**
      * findByUsername
-     * @param username
-     * @return
+     *
+     * @param username 登录名
+     * @return 结果
      */
     User findByUsername(String username);
 
     /**
      * findByEmail
-     * @param email
-     * @return
+     *
+     * @param email 邮箱
+     * @return 结果
      */
     User findByEmail(String email);
 
     /**
      * 修改密码
-     * @param username
-     * @param pass
+     *
+     * @param username 登录名
+     * @param pass     密码
      */
     @Modifying
-    @Query(value = "update user set password = ?2 , last_password_reset_time = ?3 where username = ?1",nativeQuery = true)
+    @Query(value = "update user set password = ?2 , last_password_reset_time = ?3 where username = ?1", nativeQuery = true)
     void updatePass(String username, String pass, Date lastPasswordResetTime);
 
     /**
      * 修改头像
-     * @param username
-     * @param url
+     *
+     * @param username 登录名
+     * @param url      URL
      */
     @Modifying
-    @Query(value = "update user set avatar = ?2 where username = ?1",nativeQuery = true)
+    @Query(value = "update user set avatar = ?2 where username = ?1", nativeQuery = true)
     void updateAvatar(String username, String url);
 
     /**
      * 修改邮箱
-     * @param username
-     * @param email
+     *
+     * @param username 登录名
+     * @param email    邮箱
      */
     @Modifying
-    @Query(value = "update user set email = ?2 where username = ?1",nativeQuery = true)
+    @Query(value = "update user set email = ?2 where username = ?1", nativeQuery = true)
     void updateEmail(String username, String email);
 }

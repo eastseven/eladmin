@@ -10,9 +10,9 @@ import me.zhengjie.modules.security.security.AuthenticationInfo;
 import me.zhengjie.modules.security.security.AuthorizationUser;
 import me.zhengjie.modules.security.security.ImgResult;
 import me.zhengjie.modules.security.security.JwtUser;
+import me.zhengjie.modules.security.utils.JwtTokenUtil;
 import me.zhengjie.modules.security.utils.VerifyCodeUtils;
 import me.zhengjie.utils.EncryptUtils;
-import me.zhengjie.modules.security.utils.JwtTokenUtil;
 import me.zhengjie.utils.SecurityUtils;
 import me.zhengjie.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,7 @@ import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,12 +53,13 @@ public class AuthenticationController {
 
     /**
      * 登录授权
-     * @param authorizationUser
-     * @return
+     *
+     * @param authorizationUser 用户
+     * @return 结果
      */
     @Log("用户登录")
     @PostMapping(value = "${jwt.auth.path}")
-    public ResponseEntity login(@Validated @RequestBody AuthorizationUser authorizationUser){
+    public ResponseEntity login(@Validated @RequestBody AuthorizationUser authorizationUser) {
 
         // 查询验证码
         String code = redisService.getCodeVal(authorizationUser.getUuid());
@@ -71,11 +73,11 @@ public class AuthenticationController {
         }
         final JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(authorizationUser.getUsername());
 
-        if(!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(authorizationUser.getPassword()))){
+        if (!jwtUser.getPassword().equals(EncryptUtils.encryptPassword(authorizationUser.getPassword()))) {
             throw new AccountExpiredException("密码错误");
         }
 
-        if(!jwtUser.isEnabled()){
+        if (!jwtUser.isEnabled()) {
             throw new AccountExpiredException("账号已停用，请联系管理员");
         }
 
@@ -83,16 +85,17 @@ public class AuthenticationController {
         final String token = jwtTokenUtil.generateToken(jwtUser);
 
         // 返回 token
-        return ResponseEntity.ok(new AuthenticationInfo(token,jwtUser));
+        return ResponseEntity.ok(new AuthenticationInfo(token, jwtUser));
     }
 
     /**
      * 获取用户信息
-     * @return
+     *
+     * @return 结果
      */
     @GetMapping(value = "${jwt.auth.account}")
-    public ResponseEntity getUserInfo(){
-        JwtUser jwtUser = (JwtUser)userDetailsService.loadUserByUsername(SecurityUtils.getUsername());
+    public ResponseEntity getUserInfo() {
+        JwtUser jwtUser = (JwtUser) userDetailsService.loadUserByUsername(SecurityUtils.getUsername());
         return ResponseEntity.ok(jwtUser);
     }
 
@@ -105,13 +108,13 @@ public class AuthenticationController {
         //生成随机字串
         String verifyCode = VerifyCodeUtils.generateVerifyCode(4);
         String uuid = IdUtil.simpleUUID();
-        redisService.saveCode(uuid,verifyCode);
+        redisService.saveCode(uuid, verifyCode);
         // 生成图片
         int w = 111, h = 36;
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         VerifyCodeUtils.outputImage(w, h, stream, verifyCode);
         try {
-            return new ImgResult(Base64.encode(stream.toByteArray()),uuid);
+            return new ImgResult(Base64.encode(stream.toByteArray()), uuid);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -126,8 +126,8 @@ public class UserController {
     /**
      * 修改密码
      *
-     * @param user
-     * @return
+     * @param user 用户
+     * @return 结果
      */
     @PostMapping(value = "/users/updatePass")
     public ResponseEntity updatePass(@RequestBody UserPassVo user) {
@@ -145,8 +145,8 @@ public class UserController {
     /**
      * 修改头像
      *
-     * @param file
-     * @return
+     * @param file 文件
+     * @return 结果
      */
     @PostMapping(value = "/users/updateAvatar")
     public ResponseEntity updateAvatar(@RequestParam MultipartFile file) {
@@ -158,9 +158,9 @@ public class UserController {
     /**
      * 修改邮箱
      *
-     * @param user
-     * @param user
-     * @return
+     * @param code 验证码
+     * @param user 用户
+     * @return 结果
      */
     @Log("修改邮箱")
     @PostMapping(value = "/users/updateEmail/{code}")
@@ -178,7 +178,7 @@ public class UserController {
     /**
      * 如果当前用户的角色级别低于创建用户的角色级别，则抛出权限不足的错误
      *
-     * @param resources
+     * @param resources 资源
      */
     private void checkLevel(User resources) {
         Integer currentLevel = Collections.min(roleService.findByUsers_Id(SecurityUtils.getUserId()).stream().map(RoleSmallDTO::getLevel).collect(Collectors.toList()));
